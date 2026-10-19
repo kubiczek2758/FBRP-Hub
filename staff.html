@@ -346,7 +346,6 @@
 
     (function () {
       var ACCESS_CODE = "7&jO*L#c";
-      var STORAGE_KEY = "fbrp_staff_unlocked";
 
       var gate = document.getElementById("gate");
       var panel = document.getElementById("panel");
@@ -361,14 +360,13 @@
         document.title = "Staff Hub | Fun Border Roleplay";
       }
 
-      if (sessionStorage.getItem(STORAGE_KEY) === "1") {
-        showPanel();
-      }
+      /* unlocks live in memory only — any reload or page switch requires the codes again */
+      sessionStorage.removeItem("fbrp_staff_unlocked");
+      sessionStorage.removeItem("fbrp_training_unlocked");
 
       form.addEventListener("submit", function (e) {
         e.preventDefault();
         if (input.value === ACCESS_CODE) {
-          sessionStorage.setItem(STORAGE_KEY, "1");
           showPanel();
         } else {
           error.textContent = "Incorrect code. Please try again.";
@@ -380,16 +378,16 @@
       });
 
       document.getElementById("lockout").addEventListener("click", function () {
-        sessionStorage.removeItem(STORAGE_KEY);
         location.reload();
       });
 
       /* tabs */
       var tabs = document.querySelectorAll(".tab");
+      var trainUnlocked = false;
       tabs.forEach(function (tab) {
         tab.addEventListener("click", function () {
           var target = tab.getAttribute("data-tab");
-          if (target === "training" && sessionStorage.getItem(TRAIN_KEY) !== "1") {
+          if (target === "training" && !trainUnlocked) {
             openTrainModal(tab);
             return;
           }
@@ -406,7 +404,6 @@
 
       /* training guide gate */
       var TRAIN_CODE = "h&5l*c^3";
-      var TRAIN_KEY = "fbrp_training_unlocked";
       var trainModal = document.getElementById("trainModal");
       var trainForm = document.getElementById("trainForm");
       var trainInput = document.getElementById("trainCode");
@@ -430,7 +427,7 @@
       trainForm.addEventListener("submit", function (e) {
         e.preventDefault();
         if (trainInput.value === TRAIN_CODE) {
-          sessionStorage.setItem(TRAIN_KEY, "1");
+          trainUnlocked = true;
           var icon = document.getElementById("trainLockIcon");
           if (icon) { icon.style.display = "none"; }
           closeTrainModal();
@@ -452,11 +449,6 @@
       trainModal.addEventListener("click", function (e) {
         if (e.target === trainModal) { closeTrainModal(); }
       });
-
-      if (sessionStorage.getItem(TRAIN_KEY) === "1") {
-        var icon = document.getElementById("trainLockIcon");
-        if (icon) { icon.style.display = "none"; }
-      }
     })();
   </script>
 
