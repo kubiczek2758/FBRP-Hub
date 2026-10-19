@@ -1,10 +1,63 @@
-/* theme switcher — classic blue / halloween 2026 */
+/* theme switcher — classic blue / halloween */
 (function () {
   var STORAGE_KEY = 'fbrp_theme';
   var LOGOS = {
     default: 'FBRP.png',
     halloween: 'FBRP-Halloween.png'
   };
+
+  /* halloween side decorations — pumpkins & ghosts peeking from the edges */
+  var SVG_PUMPKIN = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 96">' +
+    '<defs><radialGradient id="pg" cx="0.5" cy="0.32" r="0.95">' +
+    '<stop offset="0" stop-color="#ffb45c"/><stop offset="0.5" stop-color="#f5881a"/><stop offset="1" stop-color="#b84e04"/>' +
+    '</radialGradient></defs>' +
+    '<path d="M47 16c-1-7 2-11 8-13 3 2 2 6-1 8 4-2 9-2 10 2-6 2-11 5-13 11z" fill="#6f9a3e"/>' +
+    '<path d="M44 18c3-4 9-4 12 0l-2 6h-8z" fill="#5c3a1e"/>' +
+    '<ellipse cx="50" cy="56" rx="43" ry="33" fill="url(#pg)"/>' +
+    '<ellipse cx="50" cy="56" rx="22" ry="33" fill="none" stroke="#8f3d03" stroke-opacity="0.4" stroke-width="2.5"/>' +
+    '<ellipse cx="50" cy="56" rx="38" ry="33" fill="none" stroke="#8f3d03" stroke-opacity="0.3" stroke-width="2"/>' +
+    '<path d="M33 48l9 13H24z" fill="#2a1503"/>' +
+    '<path d="M67 48l9 13H58z" fill="#2a1503"/>' +
+    '<path d="M50 56l5 7h-10z" fill="#2a1503"/>' +
+    '<path d="M28 68q22 16 44 0l-5 9-6-4-6 7-6-7-6 4z" fill="#2a1503"/>' +
+    '<path d="M28 68q22 16 44 0" fill="none" stroke="#ffcf7a" stroke-opacity="0.5" stroke-width="1.5"/>' +
+    '</svg>';
+  var SVG_GHOST = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 84 110">' +
+    '<defs><linearGradient id="gg" x1="0" y1="0" x2="0" y2="1">' +
+    '<stop offset="0" stop-color="#ffffff"/><stop offset="0.7" stop-color="#f1ead8"/><stop offset="1" stop-color="#ddd2b8"/>' +
+    '</linearGradient></defs>' +
+    '<path d="M42 6C21 6 10 25 10 45v58l9-10 8 10 8-10 7 10 8-10 8 10 7-9 9 9V45C76 25 63 6 42 6z" fill="url(#gg)"/>' +
+    '<path d="M42 6C21 6 10 25 10 45v8C15 30 26 14 42 14s27 16 32 39v-8C76 25 63 6 42 6z" fill="#ffffff" opacity="0.55"/>' +
+    '<ellipse cx="30" cy="44" rx="4.6" ry="7.5" fill="#1a1408" transform="rotate(-14 30 44)"/>' +
+    '<ellipse cx="54" cy="44" rx="4.6" ry="7.5" fill="#1a1408" transform="rotate(14 54 44)"/>' +
+    '<ellipse cx="42" cy="62" rx="7" ry="10.5" fill="#1a1408"/>' +
+    '<ellipse cx="42" cy="66" rx="3.4" ry="4.5" fill="#c9402e"/>' +
+    '<ellipse cx="21" cy="55" rx="5" ry="3" fill="#ffb27a" opacity="0.55"/>' +
+    '<ellipse cx="63" cy="55" rx="5" ry="3" fill="#ffb27a" opacity="0.55"/>' +
+    '</svg>';
+
+  function svgUri(svg) {
+    return 'url("data:image/svg+xml,' + encodeURIComponent(svg) + '")';
+  }
+
+  var deco = document.createElement('div');
+  deco.id = 'halloweenDeco';
+  deco.innerHTML =
+    '<div class="deco-item deco-pumpkin-l"></div>' +
+    '<div class="deco-item deco-ghost-r"></div>' +
+    '<div class="deco-item deco-ghost-l"></div>' +
+    '<div class="deco-item deco-pumpkin-r"></div>';
+  document.body.appendChild(deco);
+
+  function setDeco(name) {
+    deco.classList.toggle('on', name === 'halloween');
+    if (name === 'halloween') {
+      deco.querySelector('.deco-pumpkin-l').style.backgroundImage = svgUri(SVG_PUMPKIN);
+      deco.querySelector('.deco-pumpkin-r').style.backgroundImage = svgUri(SVG_PUMPKIN);
+      deco.querySelector('.deco-ghost-r').style.backgroundImage = svgUri(SVG_GHOST);
+      deco.querySelector('.deco-ghost-l').style.backgroundImage = svgUri(SVG_GHOST);
+    }
+  }
 
   /* build floating button + picker modal */
   var fab = document.createElement('button');
@@ -46,6 +99,7 @@
     } else {
       document.documentElement.setAttribute('data-theme', name);
     }
+    setDeco(name);
     var logo = LOGOS[name];
     document.querySelectorAll('img').forEach(function (img) {
       if (img.hasAttribute('data-no-swap')) { return; }
