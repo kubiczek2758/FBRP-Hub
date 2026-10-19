@@ -20,6 +20,7 @@
         <a href="#about">About</a>
         <a href="#join">How to Join</a>
         <a href="#departments">Departments</a>
+        <a href="#gallery">Gallery</a>
         <a href="#rules">Rules</a>
         <a class="btn-nav" href="https://discord.gg/fbrptop" target="_blank" rel="noopener">Discord</a>
       </div>
@@ -159,6 +160,29 @@
       </div>
     </section>
 
+    <section class="block" id="gallery">
+      <span class="kicker">Screenshots</span>
+      <div class="section-head"><h2 class="section-title">Server Gallery</h2></div>
+      <p class="section-sub">
+        Moments captured at the border — patrols, checkpoints and everything in between.
+        Use the arrows to browse.
+      </p>
+      <div class="carousel" id="carousel">
+        <button class="car-arrow prev" id="carPrev" aria-label="Previous screenshot">&#10094;</button>
+        <div class="car-viewport">
+          <div class="car-track" id="carTrack">
+            <img src="web1.png" alt="FBRP server screenshot 1">
+            <img src="web2.png" alt="FBRP server screenshot 2">
+            <img src="web3.png" alt="FBRP server screenshot 3">
+            <img src="web4.png" alt="FBRP server screenshot 4">
+            <img src="web5.png" alt="FBRP server screenshot 5">
+          </div>
+        </div>
+        <button class="car-arrow next" id="carNext" aria-label="Next screenshot">&#10095;</button>
+      </div>
+      <div class="car-dots" id="carDots"></div>
+    </section>
+
     <section class="block" id="rules">
       <span class="kicker">Server Rules</span>
       <div class="section-head"><h2 class="section-title">Rules of the Border</h2></div>
@@ -228,6 +252,45 @@
   </footer>
 
   <script>
+    /* gallery carousel */
+    (function () {
+      var track = document.getElementById('carTrack');
+      var slides = track.children.length;
+      var dotsWrap = document.getElementById('carDots');
+      var index = 0;
+
+      for (var i = 0; i < slides; i++) {
+        var dot = document.createElement('button');
+        dot.className = 'car-dot' + (i === 0 ? ' active' : '');
+        dot.setAttribute('aria-label', 'Go to screenshot ' + (i + 1));
+        (function (n) {
+          dot.addEventListener('click', function () { goTo(n); });
+        })(i);
+        dotsWrap.appendChild(dot);
+      }
+
+      function goTo(n) {
+        index = (n + slides) % slides;
+        track.style.transform = 'translateX(-' + (index * 100) + '%)';
+        var dots = dotsWrap.children;
+        for (var i = 0; i < dots.length; i++) {
+          dots[i].classList.toggle('active', i === index);
+        }
+      }
+
+      document.getElementById('carPrev').addEventListener('click', function () { goTo(index - 1); });
+      document.getElementById('carNext').addEventListener('click', function () { goTo(index + 1); });
+
+      document.addEventListener('keydown', function (e) {
+        var gallery = document.getElementById('gallery');
+        var rect = gallery.getBoundingClientRect();
+        if (rect.top < window.innerHeight && rect.bottom > 0) {
+          if (e.key === 'ArrowLeft') { goTo(index - 1); }
+          if (e.key === 'ArrowRight') { goTo(index + 1); }
+        }
+      });
+    })();
+
     document.getElementById('copyCode').addEventListener('click', function () {
       const el = this;
       const done = () => {

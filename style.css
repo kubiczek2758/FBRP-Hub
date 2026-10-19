@@ -582,6 +582,8 @@ td.abbr {
   .nav-links { gap: 14px; }
   .code-banner { flex-direction: column; align-items: flex-start; }
   .gate-form { flex-direction: column; }
+  .carousel { gap: 8px; }
+  .car-arrow { width: 38px; height: 38px; }
 }
 
 /* ---------- section head ---------- */
@@ -743,4 +745,78 @@ td.abbr {
   align-self: flex-start;
   padding: 11px 22px;
   font-size: 0.9rem;
+}
+
+/* ---------- gallery carousel ---------- */
+.carousel {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.car-viewport {
+  flex: 1;
+  overflow: hidden;
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
+  background: var(--card);
+}
+
+.car-track {
+  display: flex;
+  transition: transform 0.45s cubic-bezier(0.22, 0.8, 0.3, 1);
+}
+
+.car-track img {
+  width: 100%;
+  flex-shrink: 0;
+  display: block;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.car-arrow {
+  flex-shrink: 0;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  background: var(--card);
+  color: var(--text);
+  font-size: 1.05rem;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s, color 0.15s, transform 0.15s;
+}
+
+.car-arrow:hover {
+  background: var(--blue);
+  border-color: var(--blue);
+  color: #fff;
+  transform: scale(1.06);
+}
+
+.car-dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.car-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 999px;
+  border: none;
+  background: rgba(255, 255, 255, 0.18);
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.2s, width 0.2s;
+}
+
+.car-dot.active {
+  background: var(--blue-bright);
+  width: 24px;
 }
