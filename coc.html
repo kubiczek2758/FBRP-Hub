@@ -43,20 +43,20 @@
         <div class="coc-card top">
           <h3>Ownership Team</h3>
           <ol class="coc-ranks">
-            <li>𝐅𝐁𝐑𝐏 | Owner</li>
-            <li>𝐅𝐁𝐑𝐏 | Executive Chairman</li>
-            <li>𝐅𝐁𝐑𝐏 | Vice Chairman</li>
-            <li>FBRP | Ownership Board</li>
-            <li>𝐅𝐁𝐑𝐏 | Executive Director</li>
-            <li>𝐅𝐁𝐑𝐏 | Server Overseer</li>
+            <li>Owner</li>
+            <li>Executive Chairman</li>
+            <li>Vice Chairman</li>
+            <li>Ownership Board</li>
+            <li>Executive Director</li>
+            <li>Server Overseer</li>
           </ol>
         </div>
 
         <div class="coc-card">
           <h3>Discord Management</h3>
           <ol class="coc-ranks">
-            <li>𝐅𝐁𝐑𝐏 | Executive Administrator</li>
-            <li>𝐅𝐁𝐑𝐏 | Security &amp; Integrity Enforcement</li>
+            <li>Executive Administrator</li>
+            <li>Security &amp; Integrity Enforcement</li>
           </ol>
           <p class="coc-note">Technically Discord Management, but higher than the Board of Directors.</p>
         </div>
@@ -107,7 +107,7 @@
         <div class="coc-card">
           <h3>Internal Affairs</h3>
           <ol class="coc-ranks">
-            <li>𝐅𝐁𝐑𝐏 | Internal Affairs Team</li>
+            <li>Internal Affairs Team</li>
             <li>Internal Affairs Management</li>
           </ol>
         </div>
@@ -135,7 +135,7 @@
             <li>Senior Administrator</li>
             <li>Administrator</li>
             <li>Junior Administrator</li>
-            <li>𝐅𝐁𝐑𝐏 | Trial Administrator</li>
+            <li>Trial Administrator</li>
           </ol>
         </div>
 
@@ -163,25 +163,7 @@
     </div>
   </footer>
 
-  <script>
-    /* mobile menu */
-    (function () {
-      var toggle = document.getElementById('navToggle');
-      var links = document.querySelector('.nav-links');
-      toggle.addEventListener('click', function () {
-        var open = links.classList.toggle('open');
-        toggle.classList.toggle('open', open);
-        toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-      });
-      links.querySelectorAll('a').forEach(function (a) {
-        a.addEventListener('click', function () {
-          links.classList.remove('open');
-          toggle.classList.remove('open');
-          toggle.setAttribute('aria-expanded', 'false');
-        });
-      });
-    })();
-  </script>
+  <script src="nav.js"></script>
 
 </body>
 </html>
