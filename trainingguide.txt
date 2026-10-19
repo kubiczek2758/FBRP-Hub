@@ -1,0 +1,152 @@
+🚨 FBRP Staff Training Guide
+
+⚠️ DISCLAIMER FOR INSTRUCTORS: If you are deemed incapable of effectively training Trial Moderators, you will be removed from the Training Instructor Program.
+
+📋 Phase 0: Pre-Training Setup
+
+Step 1: Trainee Notification & Preparation
+
+1. Ping the Staff Trainee on Discord with the training invitation and private server code.
+2. Head directly to the SD (Sheriff Department) Briefing Room to meet your trainee.
+
+Step 2: Requirements Check
+
+Before proceeding, verify that your trainee meets all requirements:
+
+* Guns: Unequipped completely.
+* Avatar: Realistic (no oversized accessories, memes, or non-RP gear).
+* Equipment: Handcuffs and Taser equipped.
+* Optional Voice Check: You may ask for an optional voice check.
+
+🚨 CRITICAL NOTE: Voice checks are strictly optional. If your trainee chooses to speak and sounds under 13 years old, do not confront them directly—immediately flag an Internal Affairs member to investigate.
+
+🏫 Phase 1: Classroom Phase
+
+💡 Copy and paste the highlighted lines below directly into the in-game chat bar. Text inside brackets `[like this]` provides instructions for you and should not be copied into chat.
+
+1. Welcome & Introduction
+
+:m Welcome to the Classroom Phase! I am your Training Instructor, [Your Username], and I will be guiding you today.
+
+:m During this phase, we will cover the core guidelines and information required while working here at FBRP!
+
+:m Following the lesson, you will undergo a quiz. There will be 10 questions and you are required to answer each of them to pass.
+
+:m Are you ready before we continue with the training?
+
+(If Yes, proceed. If No, clarify any questions before continuing.)
+
+
+2. Core Curriculum (Lecture)
+
+(Advise the trainee to take notes now. Tell them to type "done" in chat once they are ready for the next section.)
+
+:m Chain of Command: The FBRP Chain of Command consists of (TO DO, SOON NEW)
+
+:m Core Values: As a staff member here at FBRP, you must uphold our 7 core values: Integrity, Respect, Determination, Excellence, Honesty, Diligence, and Professionalism.
+
+:m Infractions: Depending on severity, infractions include: Warning, Strike, Suspension, Demotion, Re-training, Termination, Blacklist, or Unappealable Staff Blacklist.
+
+:m Escalation Scale: Punishments follow a 3-strikes system (e.g., 3 Warnings = 1 Strike | 3 Strikes = 1 Suspension | 3 Suspensions = 1 Demotion | 3 Demotions = 1 Termination | 3 Terminations = 1 Blacklist | 3 Blacklists = 1 Unappealable Staff Blacklist).
+
+:m Re-trainings: Re-trainings are given on special occasions at the sole discretion of the Community Directors instead of a termination.
+
+:m Promotions: Promotions happen on Saturday each week. Sometimes there is a delay, so you must remain patient.
+
+:m On-Duty Expectations: When you go on duty, start your shift using /shift manage. You are required to use proper SPaG (Spelling, Punctuation, and Grammar) at all times.
+
+:m Logging Punishments: Log punishments via the Melonly bot using /logs create (Include User, Punishment, and Reason). NEVER log a ban unless instructed by someone with ban permissions, and sign their name on the log. Alternatively, use the Melonly Website or type :log in-game.
+
+:m Leave of Absence (LOA): All LOA requests must be submitted through the Melonly bot.
+
+3. Comprehension Check
+
+:m Have you understood everything that I have stated?
+
+(If Yes, proceed to the quiz. If No, re-explain any unclear topics.)
+
+:m We will now start the quiz, which will cover what we have said as well as basic moderation questions. If you have any final questions, ask them now.
+
+
+
+
+
+
+📝 Phase 2: Assessment Quiz
+
+Ask the following questions using `:m`. The trainee must answer in standard chat.
+
+Grading Criteria
+
+* Passing Score: 7 / 10 (70%)
+* Time Limit: Reasonable pace; do not rush them.
+
+| # | Question (`:m`) | Correct Answer |
+
+| 1 | What is Fun Border Roleplay's Chain of Command? 
+| DO NOT USE THAT QUESTION |
+| 2 | What are our 7 core values here at Fun Border Roleplay? 
+| Integrity, Respect, Determination, Excellence, Honesty, Diligence, Professionalism |
+| 3 | Do you know how to use Melonly? 
+| *Yes / No (Verify understanding if No)* |
+| 4 | What day are promotions held? 
+| Saturday |
+| 5 | What is the punishment given for Random Death Match (RDM)? 
+| Warning |
+| 6 | What is the punishment given for Vehicle Death Match (VDM)? 
+| Warning |
+| 7 | What is the punishment for the rule violation of Mass RDM? 
+| Kick / Ban |
+| 8 | What does NLR stand for and what is the punishment given? 
+| New Life Rule — Warning |
+| 9 | How do you start your shift? 
+| /shift manage |
+| 10 | What six types of infractions can you acquire? 
+| Warning, Strike, Suspension, Demotion, Re-training, Termination |
+
+> 🚫 IF THEY FAIL (< 6/9): Review the missed questions with them, log the failure, and dismiss them politely.
+> ✅ IF THEY PASS (≥ 6/9): Congratulate them and move to Phase 3!
+
+
+
+
+
+
+
+
+
+
+🚘 Phase 3: Practical Ridealong
+
+Duration: ~20–30 Minutes
+
+Location: Start at CPD Headquarters / District Station
+
+Prep Checklist
+
+1. Instruct the trainee to log into duty via the Melonly bot and equip their Staff Uniform.
+2. Verify they have unequipped all weapons before spawning a Staff Vehicle.
+3. Grant in-game Mod permissions only for the duration of the ridealong.
+
+Procedure
+
+1. Have the trainee drive around until a Mod Call appears.
+2. Instruct them to pull over in a safe, non-disruptive location and click on the call.
+3. Let the trainee handle the calls independently.
+
+Field Rules for Instructors
+
+* 🛑 Hands Off: Do not step in to help your trainee unless it is absolutely necessary (e.g., severe troll/exploit scenario).
+* 💡 Coaching: You are allowed to give tips if your trainee gets a little stuck, but do not handle the scene for them.
+* ✍️ SPaG Enforcement: Remind your trainee to use proper SPaG if they are not doing so.
+* 🔒 Permissions: Only mod your trainee while you are with them. If they do not pass, ensure you remove permissions before they leave.
+
+
+🏁 Phase 4: Dismissal & Conclusion
+
+1. Bring the trainee back to the CPD Briefing Room.
+2. Discuss their results and ridealong performance (highlight strengths and areas to improve).
+3. Answer any final questions before dismissing them.
+4. Remind them to clock off duty if they are not staying on for an active shift.
+5. Revoke Mod permissions (if not keeping them on duty) and log the completed training in channel.
+

@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Staff Site | Fun Border Roleplay</title>
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="FBRP.png">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Access gate -->
+  <div class="gate" id="gate">
+    <div class="gate-card" id="gateCard">
+      <img src="FBRP.png" alt="FBRP logo">
+      <h1>Staff Access</h1>
+      <p>This area is restricted to FBRP staff members. Enter the access code to continue.</p>
+      <form class="gate-form" id="gateForm">
+        <input type="password" id="gateCode" placeholder="Access code" autocomplete="off" autofocus>
+        <button type="submit">Unlock</button>
+      </form>
+      <div class="gate-error" id="gateError"></div>
+      <a class="gate-back" href="index.html">&larr; Back to main site</a>
+    </div>
+  </div>
+
+  <!-- Staff panel -->
+  <div id="panel" style="display:none;">
+    <nav>
+      <div class="nav-inner">
+        <a class="nav-logo" href="index.html">
+          <img src="FBRP.png" alt="FBRP logo">
+          <span>FBRP STAFF</span>
+        </a>
+        <div class="nav-links">
+          <a href="index.html">Main Site</a>
+          <a class="btn-nav" href="https://discord.gg/fbrptop" target="_blank" rel="noopener">Discord</a>
+        </div>
+      </div>
+    </nav>
+
+    <main class="wrap">
+      <div class="staff-header">
+        <img src="FBRP.png" alt="FBRP logo">
+        <div>
+          <h1>Staff Information Hub</h1>
+          <p>Game punishments, STS protocol and the staff training guide — all in one place.</p>
+        </div>
+        <button class="lockout" id="lockout">Lock</button>
+      </div>
+
+      <div class="tabs">
+        <button class="tab active" data-tab="punishments">Game Punishments</button>
+        <button class="tab" data-tab="sts">STS Guide</button>
+        <button class="tab" data-tab="training">Training Guide</button>
+      </div>
+
+      <!-- ============ TAB: PUNISHMENTS ============ -->
+      <div class="tab-panel active" id="punishments">
+        <div class="table-scroll">
+          <table class="punishments">
+            <thead>
+              <tr>
+                <th>Violation</th>
+                <th>Meaning</th>
+                <th>Definition</th>
+                <th>1st Offence</th>
+                <th>2nd Offence</th>
+                <th>3rd Offence</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td class="abbr">CURU</td><td>Cuff Rush</td><td>Cuffing someone without proper roleplay.</td><td><span class="pill warn">Warning</span></td><td><span class="pill warn">Warning</span></td><td><span class="pill kick">Kick</span></td></tr>
+              <tr><td class="abbr">FR</td><td>Fear Roleplay</td><td>Not acting like your character fears danger.</td><td><span class="pill warn">Warning</span></td><td><span class="pill warn">Warning</span></td><td><span class="pill kick">Kick</span></td></tr>
+              <tr><td class="abbr">NLR</td><td>New Life Rule</td><td>Returning after death as if nothing happened.</td><td><span class="pill warn">Warning</span></td><td><span class="pill warn">Warning</span></td><td><span class="pill kick">Kick</span></td></tr>
+              <tr><td class="abbr">NLU</td><td>No Livery/Uniform</td><td>Using an incorrect or missing livery/uniform.</td><td><span class="pill warn">Warning</span></td><td><span class="pill warn">Warning</span></td><td><span class="pill kick">Kick</span></td></tr>
+              <tr><td class="abbr">DISS</td><td>Disrespect</td><td>Being rude or insulting to others.</td><td><span class="pill warn">Warning</span></td><td><span class="pill kick">Kick</span></td><td><span class="pill ban">Ban</span></td></tr>
+              <tr><td class="abbr">CB</td><td>Cop Baiting</td><td>Intentionally provoking law enforcement.</td><td><span class="pill warn">Warning</span></td><td><span class="pill kick">Kick</span></td><td><span class="pill ban">Ban</span></td></tr>
+              <tr><td class="abbr">LTS</td><td>Lying To Staff</td><td>Giving false information to staff.</td><td><span class="pill warn">Warning</span></td><td><span class="pill kick">Kick</span></td><td><span class="pill ban">Ban</span></td></tr>
+              <tr><td class="abbr">FTC</td><td>Failure To Comply</td><td>Refusing lawful roleplay instructions.</td><td><span class="pill warn">Warning</span></td><td><span class="pill kick">Kick</span></td><td><span class="pill ban">Ban</span></td></tr>
+              <tr><td class="abbr">AUJ</td><td>Auto Jail</td><td>Automatic punishment for certain actions.</td><td><span class="pill warn">Warning</span></td><td><span class="pill kick">Kick</span></td><td><span class="pill ban">Ban</span></td></tr>
+              <tr><td class="abbr">RDM</td><td>Random Death Match</td><td>Killing without a valid roleplay reason.</td><td><span class="pill warn">Warning</span></td><td><span class="pill kick">Kick</span></td><td><span class="pill ban">Ban</span></td></tr>
+              <tr><td class="abbr">VDM</td><td>Vehicle Death Match</td><td>Using a vehicle to kill without a valid roleplay reason.</td><td><span class="pill warn">Warning</span></td><td><span class="pill kick">Kick</span></td><td><span class="pill ban">Ban</span></td></tr>
+              <tr><td class="abbr">FRP</td><td>Fail Role Play</td><td>Poor or unrealistic roleplay.</td><td><span class="pill warn">Warning</span></td><td><span class="pill kick">Kick</span></td><td><span class="pill ban">Ban</span></td></tr>
+              <tr><td class="abbr">GTAD</td><td>GTA Driving</td><td>Driving unrealistically to avoid consequences.</td><td><span class="pill warn">Warning</span></td><td><span class="pill kick">Kick</span></td><td><span class="pill ban">Ban</span></td></tr>
+              <tr><td class="abbr">TR</td><td>Tow Rush</td><td>Towing vehicles without proper roleplay.</td><td><span class="pill warn">Warning</span></td><td><span class="pill kick">Kick</span></td><td><span class="pill ban">Ban</span></td></tr>
+              <tr><td class="abbr">TA</td><td>Tool Abuse</td><td>Using vehicles without proper roleplay.</td><td><span class="pill warn">Warning</span></td><td><span class="pill kick">Kick</span></td><td><span class="pill ban">Ban</span></td></tr>
+              <tr><td class="abbr">NWL</td><td>Not Whitelisted</td><td>Using a restricted item, gun, or vehicle without permission.</td><td><span class="pill warn">Warning</span></td><td><span class="pill kick">Kick</span></td><td><span class="pill ban">Ban</span></td></tr>
+              <tr><td class="abbr">RTAA</td><td>Respawn To Avoid Arrest</td><td>Respawning to escape arrest.</td><td><span class="pill warn">Warning</span></td><td><span class="pill kick">Kick</span></td><td><span class="pill ban">Ban</span></td></tr>
+              <tr><td class="abbr">LTAA</td><td>Leaving To Avoid Arrest</td><td>Leaving the game to avoid arrest.</td><td><span class="pill warn">Warning</span></td><td><span class="pill kick">Kick</span></td><td><span class="pill ban">Ban</span></td></tr>
+              <tr><td class="abbr">UA</td><td>Unrealistic Character</td><td>Keeping an unrealistic character after being told to change.</td><td><span class="pill kick">Kick</span></td><td><span class="pill ban">Ban</span></td><td><span class="pill ban">Ban</span></td></tr>
+              <tr><td class="abbr">SEV</td><td>Staff Evasion</td><td>Avoiding or ignoring staff actions.</td><td><span class="pill kick">Kick</span></td><td><span class="pill ban">Ban</span></td><td><span class="pill ban">Ban</span></td></tr>
+              <tr><td class="abbr">SVDM</td><td>Staff Vehicle Death Match</td><td>Hitting staff with a vehicle without a valid roleplay reason.</td><td><span class="pill kick">Kick</span></td><td><span class="pill ban">Ban</span></td><td><span class="pill ban">Ban</span></td></tr>
+              <tr><td class="abbr">SRDM</td><td>Staff Random Death Match</td><td>Killing staff without a valid roleplay reason.</td><td><span class="pill kick">Kick</span></td><td><span class="pill ban">Ban</span></td><td><span class="pill ban">Ban</span></td></tr>
+              <tr><td class="abbr">NITRP</td><td>No Intention To Roleplay</td><td>Joining without participating in roleplay.</td><td><span class="pill kick">Kick</span></td><td><span class="pill ban">Ban</span></td><td><span class="pill ban">Ban</span></td></tr>
+              <tr><td class="abbr">MRDM</td><td>Mass Random Death Match (5+ people)</td><td>Randomly killing 5 or more people.</td><td><span class="pill kick">Kick</span></td><td><span class="pill ban">Ban</span></td><td><span class="pill ban">Ban</span></td></tr>
+              <tr><td class="abbr">MVDM</td><td>Mass Vehicle Death Match (5+ vehicles)</td><td>Destroying or killing with vehicles on a large scale.</td><td><span class="pill kick">Kick</span></td><td><span class="pill ban">Ban</span></td><td><span class="pill ban">Ban</span></td></tr>
+              <tr><td class="abbr">ERP</td><td>Erotic Roleplay</td><td>Sexual or inappropriate roleplay.</td><td><span class="pill ban">Ban</span></td><td><span class="pill ban">Ban</span></td><td><span class="pill ban">Ban</span></td></tr>
+              <tr><td class="abbr">RACM</td><td>Racism</td><td>Using racist language or behavior.</td><td><span class="pill ban">Ban</span></td><td><span class="pill ban">Ban</span></td><td><span class="pill ban">Ban</span></td></tr>
+              <tr><td class="abbr">LTAP</td><td>Leave To Avoid Punishment</td><td>Leaving to avoid a staff punishment.</td><td><span class="pill ban">Ban</span></td><td><span class="pill ban">Ban</span></td><td><span class="pill ban">Ban</span></td></tr>
+              <tr><td class="abbr">NARCRP</td><td>Narcotic/Drug Roleplay</td><td>Roleplaying illegal drugs or narcotics.</td><td><span class="pill ban">Ban</span></td><td><span class="pill ban">Ban</span></td><td><span class="pill ban">Ban</span></td></tr>
+              <tr><td class="abbr">LTAMS</td><td>Leave To Avoid Mod Scene</td><td>Leaving during a staff moderation scene.</td><td><span class="pill ban">Ban</span></td><td><span class="pill ban">Ban</span></td><td><span class="pill ban">Ban</span></td></tr>
+              <tr><td class="abbr">TOS</td><td>Breaking Roblox Terms Of Service</td><td>Violating Roblox's official rules.</td><td><span class="pill report">Ban + Report</span></td><td><span class="pill ban">Ban</span></td><td><span class="pill ban">Ban</span></td></tr>
+              <tr><td class="abbr">JBAK</td><td>Joining Back After Kick</td><td>Joining back within 30 mins of being kicked.</td><td><span class="pill kick">Kick</span></td><td><span class="pill ban">Ban</span></td><td><span class="pill ban">Ban</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ============ TAB: STS GUIDE ============ -->
+      <div class="tab-panel guide" id="sts">
+        <div class="phase">
+          <h3>1. STS Preparation</h3>
+          <p>Use <span class="cmd">:h</span> for important server-wide announcements before the STS.</p>
+          <p style="margin-top:10px;"><b>15&ndash;10 minutes before:</b></p>
+          <span class="chat-line">:h FBRP STS preparations are now underway. Please finish your current RP and prepare for the upcoming STS.</span>
+          <span class="chat-line">:h FBRP STS will begin shortly. Please make your way to the designated STS location.</span>
+          <span class="chat-line">:h Staff members, please prepare for the upcoming STS and report to the STS location.</span>
+          <p style="margin-top:10px;"><b>5 minutes before:</b></p>
+          <span class="chat-line">:h FBRP STS will begin in approximately 5 minutes. Please line up and wait for further instructions.</span>
+          <span class="chat-line">:h Final preparations for the FBRP STS are now underway. Please remain at the STS area and follow staff instructions.</span>
+        </div>
+
+        <div class="phase">
+          <h3>2. Starting the STS</h3>
+          <p>Once everyone is ready:</p>
+          <span class="chat-line">:h FBRP STS is now beginning. Please remain in formation and follow the host's instructions.</span>
+          <span class="chat-line">:m Welcome to the FBRP STS. Please remain in your position, face the front, and listen to the instructor.</span>
+          <span class="chat-line">:m Do not move, talk over the instructor, use weapons, or disrupt the STS.</span>
+        </div>
+
+        <div class="phase">
+          <h3>3. Formation</h3>
+          <span class="chat-line">:m Please form a straight line with reasonable spacing between each person.</span>
+          <span class="chat-line">:m Keep your position and do not push or walk through the formation.</span>
+          <span class="chat-line">:m Staff will correct the formation. Please follow their instructions immediately.</span>
+        </div>
+
+        <div class="phase">
+          <h3>4. During the STS</h3>
+          <p>Use <span class="cmd">:m</span> for the actual instructions and rules.</p>
+          <span class="chat-line">:m We will now begin going through the FBRP rules. Please pay attention.</span>
+          <span class="chat-line">:m RDM — Random Deathmatch. Killing or attacking another player without a valid RP reason is prohibited.</span>
+          <span class="chat-line">:m VDM — Vehicle Deathmatch. Intentionally hitting or running over another player without a valid RP reason is prohibited.</span>
+          <span class="chat-line">:m FRP — Fail Roleplay. Players must keep their actions realistic and appropriate for the situation.</span>
+          <span class="chat-line">:m NITRP — No Intent to Roleplay. Players must actively participate in RP and should not intentionally ruin situations.</span>
+          <span class="chat-line">:m FearRP — Players must value their character's life and react realistically to dangerous situations.</span>
+          <span class="chat-line">:m Combat Logging — Leaving the server to avoid an active RP situation, arrest, or punishment is prohibited.</span>
+        </div>
+
+        <div class="phase">
+          <h3>5. STS Voting</h3>
+          <span class="chat-line">:m Voting will now begin! React with the corresponding emoji for the border you would like to attend: Stand — High Rock Border | Sit — Highway Border | Springfield Roleplay — Lay down | River City Roleplay — Hands Up</span>
+          <span class="chat-line">:m Please react with only one option.</span>
+          <span class="chat-line">:m Voting is now closed. Thank you for voting!</span>
+          <span class="chat-line">:m The border assignments will now be announced. Please wait for further instructions from Staff.</span>
+        </div>
+
+        <div class="phase">
+          <h3>6. Keeping Order</h3>
+          <p>If people start disrupting the STS:</p>
+          <span class="chat-line">:h Please remain quiet while the instructor is speaking. Continued disruption may result in removal from the STS.</span>
+          <span class="chat-line">:h Stop moving around and return to your assigned position.</span>
+          <span class="chat-line">:h This is your final reminder to follow STS instructions.</span>
+          <p style="margin-top:8px;">If necessary:</p>
+          <span class="chat-line">:m STS is temporarily paused due to disruption. Please remain in your positions and wait for further instructions.</span>
+        </div>
+
+        <div class="phase">
+          <h3>7. Ending the STS</h3>
+          <span class="chat-line">:m The FBRP STS is now coming to an end. Please remain in formation until dismissed.</span>
+          <span class="chat-line">:m Thank you for attending the FBRP STS. We appreciate your cooperation.</span>
+          <span class="chat-line">:h FBRP STS has now concluded. Thank you to everyone who participated.</span>
+          <span class="chat-line">:m You are now dismissed. Have a great roleplay!</span>
+        </div>
+
+        <div class="note">
+          <b>Command usage:</b> <span class="cmd">:h</span> for major announcements, preparation, and start/end of the STS.
+          <span class="cmd">:m</span> for instructions, rules, scenarios and general STS messages.
+          Teleport/moderation commands — only when necessary. Do not spam <span class="cmd">:h</span>; keep important announcements limited so players actually pay attention.
+        </div>
+      </div>
+
+      <!-- ============ TAB: TRAINING GUIDE ============ -->
+      <div class="tab-panel guide" id="training">
+        <div class="note">
+          <b>Disclaimer for instructors:</b> If you are deemed incapable of effectively training Trial Moderators, you will be removed from the Training Instructor Program.
+        </div>
+
+        <div class="phase">
+          <h3>Phase 0: Pre-Training Setup</h3>
+          <p><b>Step 1 — Trainee notification &amp; preparation</b></p>
+          <ul>
+            <li>Ping the Staff Trainee on Discord with the training invitation and private server code.</li>
+            <li>Head directly to the SD (Sheriff Department) Briefing Room to meet your trainee.</li>
+          </ul>
+          <p style="margin-top:10px;"><b>Step 2 — Requirements check</b></p>
+          <ul>
+            <li>Guns: unequipped completely.</li>
+            <li>Avatar: realistic (no oversized accessories, memes, or non-RP gear).</li>
+            <li>Equipment: handcuffs and taser equipped.</li>
+            <li>Optional voice check: you may ask for an optional voice check.</li>
+          </ul>
+        </div>
+
+        <div class="note">
+          <b>Critical note:</b> Voice checks are strictly optional. If your trainee chooses to speak and sounds under 13 years old, do not confront them directly — immediately flag an Internal Affairs member to investigate.
+        </div>
+
+        <div class="phase">
+          <h3>Phase 1: Classroom Phase</h3>
+          <p>Copy and paste the highlighted lines into the in-game chat bar. Text in brackets <code>[like this]</code> is instruction only — never paste it into chat.</p>
+          <p style="margin-top:10px;"><b>1. Welcome &amp; Introduction</b></p>
+          <span class="chat-line">:m Welcome to the Classroom Phase! I am your Training Instructor, [Your Username], and I will be guiding you today.</span>
+          <span class="chat-line">:m During this phase, we will cover the core guidelines and information required while working here at FBRP!</span>
+          <span class="chat-line">:m Following the lesson, you will undergo a quiz. There will be 10 questions and you are required to answer each of them to pass.</span>
+          <span class="chat-line">:m Are you ready before we continue with the training?</span>
+          <p style="margin-top:10px;"><b>2. Core Curriculum (Lecture)</b> — advise the trainee to take notes; they type "done" in chat when ready for the next section.</p>
+          <span class="chat-line">:m Chain of Command: The FBRP Chain of Command consists of [TO DO, SOON NEW]</span>
+          <span class="chat-line">:m Core Values: As a staff member here at FBRP, you must uphold our 7 core values: Integrity, Respect, Determination, Excellence, Honesty, Diligence, and Professionalism.</span>
+          <span class="chat-line">:m Infractions: Depending on severity, infractions include: Warning, Strike, Suspension, Demotion, Re-training, Termination, Blacklist, or Unappealable Staff Blacklist.</span>
+          <span class="chat-line">:m Escalation Scale: Punishments follow a 3-strikes system (e.g., 3 Warnings = 1 Strike | 3 Strikes = 1 Suspension | 3 Suspensions = 1 Demotion | 3 Demotions = 1 Termination | 3 Terminations = 1 Blacklist | 3 Blacklists = 1 Unappealable Staff Blacklist).</span>
+          <span class="chat-line">:m Re-trainings: Re-trainings are given on special occasions at the sole discretion of the Community Directors instead of a termination.</span>
+          <span class="chat-line">:m Promotions: Promotions happen on Saturday each week. Sometimes there is a delay, so you must remain patient.</span>
+          <span class="chat-line">:m On-Duty Expectations: When you go on duty, start your shift using /shift manage. You are required to use proper SPaG (Spelling, Punctuation, and Grammar) at all times.</span>
+          <span class="chat-line">:m Logging Punishments: Log punishments via the Melonly bot using /logs create (Include User, Punishment, and Reason). NEVER log a ban unless instructed by someone with ban permissions, and sign their name on the log. Alternatively, use the Melonly Website or type :log in-game.</span>
+          <span class="chat-line">:m Leave of Absence (LOA): All LOA requests must be submitted through the Melonly bot.</span>
+          <p style="margin-top:10px;"><b>3. Comprehension check</b></p>
+          <span class="chat-line">:m Have you understood everything that I have stated?</span>
+          <span class="chat-line">:m We will now start the quiz, which will cover what we have said as well as basic moderation questions. If you have any final questions, ask them now.</span>
+        </div>
+
+        <div class="phase">
+          <h3>Phase 2: Assessment Quiz</h3>
+          <p>Ask the following questions using <span class="cmd">:m</span>. The trainee answers in standard chat. Passing score: <b>7 / 10 (70%)</b>. Keep a reasonable pace — do not rush them.</p>
+          <div class="table-scroll" style="margin-top:12px;">
+            <table class="quiz-table">
+              <thead><tr><th>#</th><th>Question</th><th>Correct Answer</th></tr></thead>
+              <tbody>
+                <tr><td>1</td><td>What is Fun Border Roleplay's Chain of Command?</td><td>Do not use that question</td></tr>
+                <tr><td>2</td><td>What are our 7 core values here at Fun Border Roleplay?</td><td>Integrity, Respect, Determination, Excellence, Honesty, Diligence, Professionalism</td></tr>
+                <tr><td>3</td><td>Do you know how to use Melonly?</td><td>Yes / No (verify understanding if No)</td></tr>
+                <tr><td>4</td><td>What day are promotions held?</td><td>Saturday</td></tr>
+                <tr><td>5</td><td>What is the punishment given for Random Death Match (RDM)?</td><td>Warning</td></tr>
+                <tr><td>6</td><td>What is the punishment given for Vehicle Death Match (VDM)?</td><td>Warning</td></tr>
+                <tr><td>7</td><td>What is the punishment for the rule violation of Mass RDM?</td><td>Kick / Ban</td></tr>
+                <tr><td>8</td><td>What does NLR stand for and what is the punishment given?</td><td>New Life Rule — Warning</td></tr>
+                <tr><td>9</td><td>How do you start your shift?</td><td>/shift manage</td></tr>
+                <tr><td>10</td><td>What six types of infractions can you acquire?</td><td>Warning, Strike, Suspension, Demotion, Re-training, Termination</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p style="margin-top:10px;"><b>If they fail:</b> review the missed questions with them, log the failure, and dismiss them politely. <b>If they pass:</b> congratulate them and move to Phase 3.</p>
+        </div>
+
+        <div class="phase">
+          <h3>Phase 3: Practical Ridealong (~20–30 min)</h3>
+          <p><b>Location:</b> Start at CPD Headquarters / District Station.</p>
+          <p style="margin-top:8px;"><b>Prep checklist</b></p>
+          <ul>
+            <li>Instruct the trainee to log into duty via the Melonly bot and equip their Staff Uniform.</li>
+            <li>Verify they have unequipped all weapons before spawning a Staff Vehicle.</li>
+            <li>Grant in-game Mod permissions only for the duration of the ridealong.</li>
+          </ul>
+          <p style="margin-top:8px;"><b>Procedure</b></p>
+          <ul>
+            <li>Have the trainee drive around until a Mod Call appears.</li>
+            <li>Instruct them to pull over in a safe, non-disruptive location and click on the call.</li>
+            <li>Let the trainee handle the calls independently.</li>
+          </ul>
+          <p style="margin-top:8px;"><b>Field rules for instructors</b></p>
+          <ul>
+            <li><b>Hands off:</b> do not step in unless absolutely necessary (e.g., severe troll/exploit scenario).</li>
+            <li><b>Coaching:</b> give tips if the trainee gets stuck, but do not handle the scene for them.</li>
+            <li><b>SPaG enforcement:</b> remind them to use proper SPaG if they are not doing so.</li>
+            <li><b>Permissions:</b> only mod your trainee while you are with them. If they do not pass, remove permissions before they leave.</li>
+          </ul>
+        </div>
+
+        <div class="phase">
+          <h3>Phase 4: Dismissal &amp; Conclusion</h3>
+          <ul>
+            <li>Bring the trainee back to the CPD Briefing Room.</li>
+            <li>Discuss their results and ridealong performance (strengths and areas to improve).</li>
+            <li>Answer any final questions before dismissing them.</li>
+            <li>Remind them to clock off duty if they are not staying on for an active shift.</li>
+            <li>Revoke Mod permissions (if not keeping them on duty) and log the completed training in channel.</li>
+          </ul>
+        </div>
+      </div>
+
+    </main>
+
+    <footer>
+      <div class="foot-inner">
+        <span>© Fun Border Roleplay — Internal staff material. Do not share outside the staff team.</span>
+        <div class="foot-links">
+          <a href="index.html">Main Site</a>
+          <a href="https://discord.gg/fbrptop" target="_blank" rel="noopener">Discord</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    (function () {
+      var ACCESS_CODE = "7&jO*L#c";
+      var STORAGE_KEY = "fbrp_staff_unlocked";
+
+      var gate = document.getElementById("gate");
+      var panel = document.getElementById("panel");
+      var form = document.getElementById("gateForm");
+      var input = document.getElementById("gateCode");
+      var error = document.getElementById("gateError");
+      var gateCard = document.getElementById("gateCard");
+
+      function showPanel() {
+        gate.style.display = "none";
+        panel.style.display = "block";
+        document.title = "Staff Hub | Fun Border Roleplay";
+      }
+
+      if (sessionStorage.getItem(STORAGE_KEY) === "1") {
+        showPanel();
+      }
+
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        if (input.value === ACCESS_CODE) {
+          sessionStorage.setItem(STORAGE_KEY, "1");
+          showPanel();
+        } else {
+          error.textContent = "Incorrect code. Please try again.";
+          input.value = "";
+          gateCard.classList.remove("shake");
+          void gateCard.offsetWidth; /* restart animation */
+          gateCard.classList.add("shake");
+        }
+      });
+
+      document.getElementById("lockout").addEventListener("click", function () {
+        sessionStorage.removeItem(STORAGE_KEY);
+        location.reload();
+      });
+
+      /* tabs */
+      var tabs = document.querySelectorAll(".tab");
+      tabs.forEach(function (tab) {
+        tab.addEventListener("click", function () {
+          tabs.forEach(function (t) { t.classList.remove("active"); });
+          document.querySelectorAll(".tab-panel").forEach(function (p) { p.classList.remove("active"); });
+          tab.classList.add("active");
+          document.getElementById(tab.getAttribute("data-tab")).classList.add("active");
+        });
+      });
+    })();
+  </script>
+
+</body>
+</html>
