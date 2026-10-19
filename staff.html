@@ -53,7 +53,22 @@
       <div class="tabs">
         <button class="tab active" data-tab="punishments">Game Punishments</button>
         <button class="tab" data-tab="sts">STS Guide</button>
-        <button class="tab" data-tab="training">Training Guide</button>
+        <button class="tab" data-tab="training">Training Guide <span id="trainLockIcon" style="opacity:0.7;">&#128274;</span></button>
+      </div>
+
+      <!-- Training guide code modal -->
+      <div class="modal" id="trainModal" style="display:none;">
+        <div class="gate-card" id="trainCard">
+          <img src="FBRP.png" alt="FBRP logo">
+          <h1>Training Guide</h1>
+          <p>This section is restricted to Training Instructors. Enter the instructor code to continue.</p>
+          <form class="gate-form" id="trainForm">
+            <input type="password" id="trainCode" placeholder="Instructor code" autocomplete="off">
+            <button type="submit">Unlock</button>
+          </form>
+          <div class="gate-error" id="trainError"></div>
+          <a class="gate-back" href="#" id="trainCancel">Cancel</a>
+        </div>
       </div>
 
       <!-- ============ TAB: PUNISHMENTS ============ -->
@@ -294,7 +309,6 @@
 
     <footer>
       <div class="foot-inner">
-        <span>© Fun Border Roleplay — Internal staff material. Do not share outside the staff team.</span>
         <div class="foot-links">
           <a href="index.html">Main Site</a>
           <a href="https://discord.gg/fbrptop" target="_blank" rel="noopener">Discord</a>
@@ -348,12 +362,75 @@
       var tabs = document.querySelectorAll(".tab");
       tabs.forEach(function (tab) {
         tab.addEventListener("click", function () {
-          tabs.forEach(function (t) { t.classList.remove("active"); });
-          document.querySelectorAll(".tab-panel").forEach(function (p) { p.classList.remove("active"); });
-          tab.classList.add("active");
-          document.getElementById(tab.getAttribute("data-tab")).classList.add("active");
+          var target = tab.getAttribute("data-tab");
+          if (target === "training" && sessionStorage.getItem(TRAIN_KEY) !== "1") {
+            openTrainModal(tab);
+            return;
+          }
+          activateTab(tab);
         });
       });
+
+      function activateTab(tab) {
+        tabs.forEach(function (t) { t.classList.remove("active"); });
+        document.querySelectorAll(".tab-panel").forEach(function (p) { p.classList.remove("active"); });
+        tab.classList.add("active");
+        document.getElementById(tab.getAttribute("data-tab")).classList.add("active");
+      }
+
+      /* training guide gate */
+      var TRAIN_CODE = "h&5l*c^3";
+      var TRAIN_KEY = "fbrp_training_unlocked";
+      var trainModal = document.getElementById("trainModal");
+      var trainForm = document.getElementById("trainForm");
+      var trainInput = document.getElementById("trainCode");
+      var trainError = document.getElementById("trainError");
+      var trainCard = document.getElementById("trainCard");
+      var pendingTab = null;
+
+      function openTrainModal(tab) {
+        pendingTab = tab;
+        trainModal.style.display = "flex";
+        trainError.textContent = "";
+        trainInput.value = "";
+        setTimeout(function () { trainInput.focus(); }, 50);
+      }
+
+      function closeTrainModal() {
+        trainModal.style.display = "none";
+        pendingTab = null;
+      }
+
+      trainForm.addEventListener("submit", function (e) {
+        e.preventDefault();
+        if (trainInput.value === TRAIN_CODE) {
+          sessionStorage.setItem(TRAIN_KEY, "1");
+          var icon = document.getElementById("trainLockIcon");
+          if (icon) { icon.style.display = "none"; }
+          closeTrainModal();
+          if (pendingTab) { activateTab(pendingTab); }
+        } else {
+          trainError.textContent = "Incorrect code. Please try again.";
+          trainInput.value = "";
+          trainCard.classList.remove("shake");
+          void trainCard.offsetWidth;
+          trainCard.classList.add("shake");
+        }
+      });
+
+      document.getElementById("trainCancel").addEventListener("click", function (e) {
+        e.preventDefault();
+        closeTrainModal();
+      });
+
+      trainModal.addEventListener("click", function (e) {
+        if (e.target === trainModal) { closeTrainModal(); }
+      });
+
+      if (sessionStorage.getItem(TRAIN_KEY) === "1") {
+        var icon = document.getElementById("trainLockIcon");
+        if (icon) { icon.style.display = "none"; }
+      }
     })();
   </script>
 
