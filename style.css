@@ -16,6 +16,8 @@
   --accent-line-3: rgba(61, 99, 255, 0.35);
   --accent-line-soft: rgba(61, 99, 255, 0.3);
   --accent-faint: rgba(61, 99, 255, 0.05);
+  --banner-alt-1: #141b3a;
+  --banner-alt-2: #0c0e16;
   --bg: #07080d;
   --bg-2: #0c0e16;
   --card: #111420;
@@ -43,6 +45,8 @@ html[data-theme="halloween"] {
   --accent-line-3: rgba(255, 163, 72, 0.4);
   --accent-line-soft: rgba(255, 163, 72, 0.3);
   --accent-faint: rgba(255, 163, 72, 0.06);
+  --banner-alt-1: #2b1607;
+  --banner-alt-2: #100a05;
   --bg: #0b0806;
   --bg-2: #151009;
   --card: #191309;
@@ -356,6 +360,12 @@ section.block { padding: 70px 0; }
   gap: 24px;
   flex-wrap: wrap;
   box-shadow: 0 20px 60px var(--shadow-banner);
+}
+
+.banner-alt {
+  background: linear-gradient(135deg, var(--banner-alt-1) 0%, var(--banner-alt-2) 100%);
+  box-shadow: none;
+  border: 1px solid var(--line);
 }
 
 .code-banner h3 { font-size: 1.4rem; margin-bottom: 6px; }
