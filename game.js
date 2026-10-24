@@ -2,6 +2,11 @@
 (function () {
   var canvas = document.getElementById('borderGame');
   if (!canvas) return;
+
+  /* when the canvas lives in a hidden overlay (easter egg), run only while open */
+  var host = canvas.closest ? canvas.closest('.game-overlay') : null;
+  function isActive() { return !host || host.classList.contains('open'); }
+
   var ctx = canvas.getContext('2d');
   var W = canvas.width;
   var H = canvas.height;
@@ -21,7 +26,9 @@
   var coins = [];
   var particles = [];
   var popups = [];
+  var helis = [];
   var nextWallAt = 0;
+  var distSinceWall = 0;
 
   /* scenery */
   var clouds = [];
@@ -72,6 +79,8 @@
     coins = [];
     particles = [];
     popups = [];
+    helis = [];
+    distSinceWall = 0;
     nextWallAt = W * 0.55;
     player.y = GROUND;
     player.vy = 0;
@@ -105,26 +114,31 @@
   canvas.addEventListener('mousedown', jump);
   canvas.addEventListener('touchstart', function (e) { e.preventDefault(); jump(); }, { passive: false });
   document.addEventListener('keydown', function (e) {
+    if (!isActive()) return;
     if (e.code !== 'Space' && e.code !== 'ArrowUp') return;
     e.preventDefault();
     jump();
   });
 
   /* obstacle types: low | tall | gate | double */
+  var justSpawnedDouble = false;
   function spawnWall() {
     var r = Math.random();
     var base = { x: W + 24, passed: false };
+    justSpawnedDouble = false;
     if (r < 0.42) {
       walls.push(Object.assign(base, { type: 'low', w: 16 + Math.random() * 10, h: 24 + Math.random() * 10 }));
     } else if (r < 0.68) {
       walls.push(Object.assign(base, { type: 'tall', w: 16 + Math.random() * 8, h: 44 + Math.random() * 12 }));
-    } else if (r < 0.86) {
+    } else if (r < 0.9) {
       walls.push(Object.assign(base, { type: 'gate', w: 42 + Math.random() * 16, h: 30 + Math.random() * 8 }));
     } else {
+      /* double — gap scales with speed so you can always land between jumps */
       var w1 = 16;
-      var gap = 68 + Math.random() * 20;
+      var gap = 130 + speed * 22;
       walls.push({ type: 'low', x: W + 24, w: w1, h: 26, passed: false });
       walls.push({ type: 'low', x: W + 24 + w1 + gap, w: w1, h: 30, passed: false });
+      justSpawnedDouble = true;
     }
   }
 
@@ -150,6 +164,29 @@
     var py = player.y - player.h + 4, ph = player.h - 8;
     return px < w.x + w.w - 2 && px + pw > w.x + 2 &&
            py + ph > GROUND - w.h + 2 && py < GROUND;
+  }
+
+  function die() {
+    state = 'over';
+    dust(player.x + player.w / 2, GROUND, 14);
+    sound(160, 0.25, 'sawtooth', 0.05);
+    sound(90, 0.3, 'sawtooth', 0.05, 0.1);
+    if (score > best) {
+      best = score;
+      newBest = true;
+      localStorage.setItem('fbrp_border_best', String(best));
+    }
+  }
+
+  function heliY(h) {
+    return h.y + Math.sin(frame * 0.08 + h.phase) * 5;
+  }
+
+  function hitHeli(h) {
+    var pcx = player.x + player.w / 2;
+    var pcy = player.y - player.h / 2;
+    return Math.abs(h.x - pcx) < 20 + player.w / 2 - 4 &&
+           Math.abs(heliY(h) - pcy) < 10 + player.h / 2 - 4;
   }
 
   function drawTower(t, c) {
@@ -198,6 +235,63 @@
     ctx.textAlign = 'left';
   }
 
+  function drawHeli(h, c) {
+    ctx.save();
+    ctx.translate(h.x, heliY(h));
+
+    /* tail + fin (behind, pointing right — heli flies left) */
+    ctx.fillStyle = '#39415c';
+    ctx.fillRect(18, -3, 18, 5);
+    ctx.fillRect(34, -9, 4, 12);
+
+    /* body */
+    ctx.fillStyle = '#4a5578';
+    ctx.fillRect(-20, -9, 40, 17);
+    /* glass — nose faces left */
+    ctx.fillStyle = c.blue;
+    ctx.globalAlpha = 0.85;
+    ctx.fillRect(-17, -7, 11, 9);
+    ctx.globalAlpha = 1;
+    /* stripe */
+    ctx.fillStyle = '#d8dbe6';
+    ctx.fillRect(-20, 1, 40, 3);
+
+    /* skids */
+    ctx.strokeStyle = '#9aa1b5';
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.moveTo(-12, 13); ctx.lineTo(12, 13);
+    ctx.moveTo(-8, 8); ctx.lineTo(-8, 13);
+    ctx.moveTo(8, 8); ctx.lineTo(8, 13);
+    ctx.stroke();
+
+    /* main rotor — foreshortened spin */
+    var rl = 26 * Math.abs(Math.cos(frame * 0.55 + h.phase));
+    ctx.strokeStyle = 'rgba(230,234,245,0.75)';
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.moveTo(-rl, -12);
+    ctx.lineTo(rl, -12);
+    ctx.stroke();
+    ctx.fillStyle = '#9aa1b5';
+    ctx.fillRect(-2, -13, 4, 3);
+
+    /* tail rotor */
+    var tl = 7 * Math.abs(Math.sin(frame * 0.55 + h.phase));
+    ctx.beginPath();
+    ctx.moveTo(37, -tl);
+    ctx.lineTo(37, tl);
+    ctx.stroke();
+
+    /* beacon — alternating red / blue */
+    ctx.fillStyle = (frame % 30 < 15) ? '#ff5a5a' : c.blue;
+    ctx.beginPath();
+    ctx.arc(0, -10, 2.5, 0, Math.PI * 2);
+    ctx.fill();
+
+    ctx.restore();
+  }
+
   function drawPlayer(c) {
     var tilt = player.grounded ? 0 : (player.vy < 0 ? -0.12 : 0.1);
     ctx.save();
@@ -229,6 +323,7 @@
   }
 
   function tick() {
+    if (!isActive()) { requestAnimationFrame(tick); return; }
     var c = theme();
     ctx.clearRect(0, 0, W, H);
 
@@ -300,15 +395,28 @@
       if (player.grounded) legPhase += speed * 0.16;
 
       /* spawn */
+      distSinceWall += speed;
       nextWallAt -= speed;
       if (nextWallAt <= 0) {
         spawnWall();
         spawnCoins();
-        nextWallAt = Math.max(200, 320 + Math.random() * 260 - speed * 14);
+        /* long empty stretch? send in the choppers */
+        if (distSinceWall > 380) {
+          var n = distSinceWall > 640 ? 2 : 1;
+          for (var hs = 0; hs < n; hs++) {
+            helis.push({ x: W + 60 + hs * 340, y: 44 + Math.random() * 42, phase: Math.random() * 6.28 });
+          }
+        }
+        distSinceWall = 0;
+        /* spacing: never shorter than a full jump arc, extra room after a double */
+        nextWallAt = Math.max(speed * 46, 260 + Math.random() * 220);
+        if (justSpawnedDouble) nextWallAt += 160;
       }
 
       /* move world */
       walls.forEach(function (w) { w.x -= speed; });
+      helis.forEach(function (h) { h.x -= speed + 1.6; });
+      helis = helis.filter(function (h) { return h.x > -70; });
       coins.forEach(function (cn) { cn.x -= speed; cn.spin += 0.09; });
       particles.forEach(function (p) { p.x += p.vx; p.y += p.vy; p.vy += 0.06; p.life--; });
       popups.forEach(function (p) { p.y -= 0.7; p.life--; });
@@ -335,17 +443,11 @@
 
       /* collision */
       for (var wi = 0; wi < walls.length; wi++) {
-        if (hitPlayer(walls[wi])) {
-          state = 'over';
-          dust(player.x + player.w / 2, GROUND, 14);
-          sound(160, 0.25, 'sawtooth', 0.05);
-          sound(90, 0.3, 'sawtooth', 0.05, 0.1);
-          if (score > best) {
-            best = score;
-            newBest = true;
-            localStorage.setItem('fbrp_border_best', String(best));
-          }
-          break;
+        if (hitPlayer(walls[wi])) { die(); break; }
+      }
+      if (state === 'run') {
+        for (var hi = 0; hi < helis.length; hi++) {
+          if (hitHeli(helis[hi])) { die(); break; }
         }
       }
     } else {
@@ -361,6 +463,7 @@
     ctx.globalAlpha = 1;
 
     drawPlayer(c);
+    helis.forEach(function (h) { drawHeli(h, c); });
     coins.forEach(function (cn) { drawCoin(cn, c); });
     walls.forEach(function (w) { drawWall(w, c); });
 

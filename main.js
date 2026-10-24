@@ -133,3 +133,29 @@ document.getElementById('copyCode').addEventListener('click', function () {
     done();
   }
 });
+
+/* easter egg: typing "crossing" opens Border Runner */
+(function () {
+  var overlay = document.getElementById('gameOverlay');
+  if (!overlay) return;
+  var buffer = '';
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') { overlay.classList.remove('open'); return; }
+    var tag = e.target && e.target.tagName;
+    if (tag === 'INPUT' || tag === 'TEXTAREA') return;
+    if (e.key.length !== 1) return;
+    buffer = (buffer + e.key.toLowerCase()).slice(-8);
+    if (buffer === 'crossing') {
+      overlay.classList.add('open');
+      buffer = '';
+    }
+  });
+
+  document.getElementById('gameClose').addEventListener('click', function () {
+    overlay.classList.remove('open');
+  });
+  overlay.addEventListener('mousedown', function (e) {
+    if (e.target === overlay) overlay.classList.remove('open');
+  });
+})();
