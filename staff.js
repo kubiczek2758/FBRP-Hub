@@ -132,4 +132,48 @@
     if (e.target === trainModal) { closeTrainModal(); }
   });
 
+  /* copy buttons on :m / :h chat lines */
+  document.querySelectorAll(".chat-line").forEach(function (line) {
+    var text = line.textContent.trim();
+    var btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "copy-line";
+    btn.title = "Copy to clipboard";
+    btn.setAttribute("aria-label", "Copy to clipboard");
+    btn.textContent = "\u29C9";
+
+    function fallbackCopy() {
+      var ta = document.createElement("textarea");
+      ta.value = text;
+      document.body.appendChild(ta);
+      ta.select();
+      try { document.execCommand("copy"); } catch (e) {}
+      document.body.removeChild(ta);
+    }
+
+    btn.addEventListener("click", function () {
+      var done = function () {
+        btn.textContent = "\u2713";
+        setTimeout(function () { btn.textContent = "\u29C9"; }, 1200);
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(done).catch(function () { fallbackCopy(); done(); });
+      } else {
+        fallbackCopy();
+        done();
+      }
+    });
+    line.appendChild(btn);
+  });
+
+  /* keyboard shortcuts: 1-4 switch tabs */
+  document.addEventListener("keydown", function (e) {
+    if (e.ctrlKey || e.altKey || e.metaKey || e.shiftKey) return;
+    var tag = e.target && e.target.tagName;
+    if (tag === "INPUT" || tag === "TEXTAREA") return;
+    var i = ["1", "2", "3", "4"].indexOf(e.key);
+    if (i === -1 || !tabs[i]) return;
+    tabs[i].click();
+  });
+
 })();
