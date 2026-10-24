@@ -1439,3 +1439,33 @@ td.abbr {
 @media (max-width: 700px) {
   #halloweenDeco.on { display: none; }
 }
+
+/* ===== styled scrollbar ===== */
+html {
+  scrollbar-color: var(--line) var(--bg);
+  scrollbar-width: thin;
+}
+::-webkit-scrollbar { width: 11px; height: 11px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb {
+  background: var(--line);
+  border-radius: 6px;
+  border: 2px solid var(--bg);
+}
+::-webkit-scrollbar-thumb:hover { background: var(--blue); }
+
+/* ===== 404 mini-game ===== */
+.game-wrap { margin-top: 26px; }
+.game-canvas {
+  width: 100%;
+  display: block;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--bg-2);
+  cursor: pointer;
+}
+.game-hint {
+  margin-top: 8px;
+  font-size: 0.78rem;
+  color: var(--muted);
+}
